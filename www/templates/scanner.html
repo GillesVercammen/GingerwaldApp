@@ -1,0 +1,20 @@
+<ion-view view-title="scanner" id="scanner-page">
+  <ion-content id="scanner-page" scroll="true">
+    <div class="card">
+      <div class="item">
+       <h1>Scan the code</h1>
+        <img src="img/qr.png" alt="" id="qr">
+       <button class="button button-block button-balanced" ng-click="scanBarcode()">Start de scan</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider">
+        Scan result:
+      </div>
+      <div class="item item-text-wrap">
+      <button class="button button-block button-dark"  id="scan-btn" ng-click="addBottle()">Add to dash</button></a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

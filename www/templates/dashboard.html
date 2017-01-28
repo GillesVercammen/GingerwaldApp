@@ -1,0 +1,55 @@
+<ion-view view-title="dashboard" id="dashboard-page">
+  <ion-content id="dashboard-page" scroll="false">
+
+      <div class="row">
+          <div class="col"><strong>Ingredients</strong><br><br><br>
+            <ul >
+                <li ng-repeat="ingredients in listOfIngredients">
+                    {{ingredients.Ingredient.Name}}
+                </li>
+            </ul>
+          </div>
+          <div class="col"><strong>Amount</strong><br><br><br>
+            <ul >
+                <li ng-repeat="amount in amountOfIngredients">
+                    {{amount.Ingredient.Amount_g}}g
+                </li>
+            </ul>
+          </div>
+          <div class="col"><strong>Nutrients</strong><br><br><br>
+          <ul >
+                <li ng-repeat="nutrients in listOfNutrients">
+                    {{nutrients.Nutrient.Name}}
+                </li>
+            </ul>
+          </div>
+           <div class="col"><strong>Amount</strong><br><br><br>
+           <ul >
+                <li ng-repeat="amount in amountOfNutrients">
+                    {{amount.Nutrient.Amount_g}}g
+                </li>
+            </ul>
+          </div>
+      </div>
+      <h3>Totaal aantal shots gedronken: <br > {{amountofShots}} </h3>
+      
+      <a href="#/app/graph"><button class="button button-block button-dark"  id="graph-btn">Graph</button></a>
+      
+ <!--       
+<ion-tabs class="tabs-balanced">
+ 
+ <ion-tab title="Day">
+
+ </ion-tab>
+ 
+ <ion-tab title="Week">
+ 
+ </ion-tab>
+ 
+ <ion-tab title="Months">
+ 
+ </ion-tab>-->
+ 
+</ion-tabs>
+  </ion-content>
+</ion-view>

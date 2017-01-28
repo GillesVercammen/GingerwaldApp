@@ -1,0 +1,19 @@
+<ion-view view-title="Login" id="login-page">
+  <ion-content id="login-page" scroll="true">
+    <img src="img/logo.png" alt="logo" id="logo">
+    <form>
+      <div class="list list-inset">
+          <label class="item item-input">
+            <input type="email" ng-model="data.email" name="email" placeholder="email">
+          </label>
+          <label class="item item-input">
+            <input type="password" ng-model="data.password" name="password" placeholder="wachtwoord">
+          </label>
+      </div>
+      
+          <button class="button button-block button-balanced" type="submit" id="form-btn" ng-click="login()">Log in</button>
+          <button class="button button-block button-stable" type="submit" id="form-btn">Become a gingerwally</button>
+          <a href="#/app/scanner"><button class="button button-block button-dark"  id="scan-btn">Scan</button></a>
+    </form>
+  
+  

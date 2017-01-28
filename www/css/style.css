@@ -1,0 +1,110 @@
+
+/*
+LOGIN PAGE
+*/
+#login-page a{
+    text-decoration: none;
+}
+#login-page {
+    padding-top: 40px;
+    background-image: url("../img/background_chalkboard_smartphone.jpg")
+}
+#scan-btn {
+    width: 40%;
+    margin: 0 auto;
+}
+#form-btn {
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+#title {
+    text-align: center;
+    color: #FFFFFF;
+}
+#logo {
+    display: block;
+    width: 100%;
+}
+
+/*
+BROWSE
+*/
+#browse-page {
+    background: url("../img/wood.png") center no-repeat
+}
+#browse-page h1 {
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+}
+#browse-page .card {
+    margin-top: 20px
+}
+#browse-page .item {
+    height: 100px;
+}
+#browse-page .item:nth-child(2n) {
+    background-color: #33cd5f;
+    color: white;
+}
+#browse-page .item:nth-child(2n) p ,#browse-page .item:nth-child(2n) h2{
+    color: white;
+}
+#browse-page .item h2 {
+    padding-top: 15px;
+}
+
+/*
+MENU
+*/
+.menu {
+    background-color: #33cd5f;
+}
+
+.menu a.item-content{
+    background-color: #33cd5f;
+    color: white;
+}
+
+/*
+SCANNER
+*/
+
+#qr {
+    display: block;
+    margin: 20px auto 20px auto;
+}
+
+.card {
+    margin-top: 40px;
+    text-align: center;
+}
+
+/*
+DASHBOARD
+*/
+.col {
+   text-align: center; 
+}
+.tabs-top > .tabs, .tabs.tabs-top  {
+    top: 0px !important ;
+}
+ #dashboard-page a {
+     text-decoration: none;
+ }
+ #dashboard-page {
+     background-image: url("../img/background_chalkboard_smartphone.jpg");
+     color: white;
+ }
+ #dashboard-page h3{
+     color: white;
+     text-align: center;
+ }
+#graph-btn{
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+
