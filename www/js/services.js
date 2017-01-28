@@ -73,26 +73,30 @@ angular.module('starter.services', [])
     return {
         login: function(email, password) {
             var deferred = $q.defer();
-            var data = {
-            grant_type: 'password',
-            username: email,
-            password: password,
-            client_id: 'GingerwaldUserApp15',
-            client_secret: 'WlKGlWfcqVlE5i4OdgxxOQv1ePMgroFe7PQn9JTvq6DW6Dfpy3fKDeaMwAQXVmag'
+            var params = {
+            grant_type:'password',
+            username:'plantijn006@gingerwald.be',
+            password:'gingerjuice',
+            client_id:'GingerwaldUserApp15',
+            client_secret:'WlKGlWfcqVlE5i4OdgxxOQv1ePMgroFe7PQn9JTvq6DW6Dfpy3fKDeaMwAQXVmag'
     };
             var config = {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
             }};
             var url = "https://www.gingerwald.com/community/v2.1/authorization/oauth/token.php";
-            
-            $http.post(url, data, config)
+            params = JSON.stringify(params);
+            $http.post(url, "username=" + encodeURIComponent(email) + 
+                            "&password=" + encodeURIComponent(password) + 
+                            "&grant_type=password" +
+                            "&client_id=GingerwaldUserApp15" +
+                            "&client_secret=WlKGlWfcqVlE5i4OdgxxOQv1ePMgroFe7PQn9JTvq6DW6Dfpy3fKDeaMwAQXVmag", config)
                 .success(function(respons){
                     deferred.resolve(respons);
                 })
                 .error(function(respons,status) {
                     deferred.reject(respons);
-                    console.log(data.username + data.password)
+                    console.log()
                 })
                 return deferred.promise;
         },
