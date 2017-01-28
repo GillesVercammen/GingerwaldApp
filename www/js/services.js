@@ -73,19 +73,11 @@ angular.module('starter.services', [])
     return {
         login: function(email, password) {
             var deferred = $q.defer();
-            var params = {
-            grant_type:'password',
-            username:'plantijn006@gingerwald.be',
-            password:'gingerjuice',
-            client_id:'GingerwaldUserApp15',
-            client_secret:'WlKGlWfcqVlE5i4OdgxxOQv1ePMgroFe7PQn9JTvq6DW6Dfpy3fKDeaMwAQXVmag'
-    };
             var config = {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
             }};
             var url = "https://www.gingerwald.com/community/v2.1/authorization/oauth/token.php";
-            params = JSON.stringify(params);
             $http.post(url, "username=" + encodeURIComponent(email) + 
                             "&password=" + encodeURIComponent(password) + 
                             "&grant_type=password" +
@@ -99,11 +91,7 @@ angular.module('starter.services', [])
                     console.log()
                 })
                 return deferred.promise;
-        },
-         logout: function(success) {
-                delete $localStorage.token;
-                success();
-            }
+        }
     }
 })
 

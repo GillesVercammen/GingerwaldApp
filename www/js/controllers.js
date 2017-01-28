@@ -45,11 +45,14 @@ angular.module('starter.controllers', [])
      $scope.listOfIngredients = response.Ingredients;
      $scope.amountOfIngredients = response.Ingredients;
      $scope.listOfNutrients = response.Nutrients;
+     response.Ingredients[5].Ingredient.Name = "Apple";
      $scope.amountOfNutrients = response.Nutrients;
      $scope.amountofShots = response.Shots.length;
      console.log($scope.amountofShots);
      console.log($scope.listOfIngredients)
      console.log($scope.listOfNutrients)
+     console.log(response.Ingredients[5])
+     console.log($scope.greenApple)
      console.log(response)
    }, function(error){
      console.log(error)
@@ -90,7 +93,12 @@ function ($scope, $stateParams, $cordovaBarcodeScanner, scannerFactory, $window)
       console.log(error);
     })
 })
-.controller('AppCtrl', function($scope, $ionicModal) {
+.controller('AppCtrl', function($scope, $ionicModal, $localStorage, $state) {
+          $scope.logout = function() {
+                $localStorage.$reset();
+                console.log("token" + $localStorage.token);
+                $state.go("login")
+             };
 })
 
 
@@ -122,14 +130,6 @@ function ($scope, $stateParams, $cordovaBarcodeScanner, scannerFactory, $window)
           $scope.data.password = '';
           
       } );
-      $scope.logout = function() {
-            Main.logout(function() {
-                $localStorage.$reset();
-                $state.go("app.login")
-            }, function() {
-                alert("Failed to logout!");
-            });
-        };
       $scope.goToScanner = function(){
         $state.go("app.scanner")
       }
