@@ -6,19 +6,20 @@ angular.module('starter.controllers', [])
 .controller("GraphCtrl", function($scope, $localStorage, dashFactory) {
     
         $localStorage.newArrayIngredients = [];
-
+    
+    //Get the dashboard data
     dashFactory.getDashboard($localStorage.token)
-        .then(function(response){           
+        .then(function(response){  
+            $localStorage.response = response.Ingredients;         
             $localStorage.arrayIngredients = response.Ingredients;    
         },function(error){
             console.log(error);
         })
-        console.log($localStorage.arrayIngredients); 
-        console.log($localStorage.token); 
-
+    //Put amounts in array
         for(i = 0; i < $localStorage.arrayIngredients.length; i++) {
                 $localStorage.arrayIngredients[i] =  $localStorage.arrayIngredients[i].Ingredient.Amount_g;
-            }
+           }
+    //Sorth the array 
         console.log($localStorage.arrayIngredients);
          for (i = 0; i < $localStorage.arrayIngredients.length - 1; i++) {
                 for (j = i + 1; j < $localStorage.arrayIngredients.length; j++) {
@@ -30,36 +31,59 @@ angular.module('starter.controllers', [])
                     }
                 } 
             }  
-       console.log($localStorage.arrayIngredients);
+     //take 5 first elements because those are the highest amounts
        $scope.highest = $localStorage.arrayIngredients[0];
        $scope.secondHighest = $localStorage.arrayIngredients[1];
        $scope.thirdHighest = $localStorage.arrayIngredients[2];
        $scope.fourthHighest = $localStorage.arrayIngredients[3];
        $scope.fifthHighest = $localStorage.arrayIngredients[4];
 
+    // INGREDIENT NAME FOR TOP 5 AMOUNTS
+
+       for(i = 0; i < $localStorage.response.length; i++) {
+           switch ($localStorage.response[i].Ingredient.Amount_g) {
+               case $scope.highest:
+                   $scope.highestIngredient = $localStorage.response[i].Ingredient.Name;
+                   break;
+                case $scope.secondHighest:
+                    $scope.secondHighestIngredient = $localStorage.response[i].Ingredient.Name;
+                    break;
+                case $scope.thirdHighest:
+                    $scope.thirdHighestIngredient = $localStorage.response[i].Ingredient.Name;
+                    break;
+                case $scope.fourthHighest:
+                    $scope.fourthHighestIngredient = $localStorage.response[i].Ingredient.Name;
+                    break;
+                case $scope.fifthHighest:
+                    $scope.fifthHighestIngredient = $localStorage.response[i].Ingredient.Name;
+                    break;
+               default:
+                   break;
+           }
+       }
      $scope.myDataSource = {
                 chart: {
                     caption: "Ingredients",
                     subCaption: "Top 5 ingredients in last month",
                 },
                 data:[{
-                    label: "Pineapple",
+                    label: $scope.highestIngredient,
                     value: $scope.highest
                 },
                 {
-                    label: "Melon",
+                    label: $scope.secondHighestIngredient,
                     value: $scope.secondHighest
                 },
                 {
-                    label: "Carrot",
+                    label:  $scope.thirdHighestIngredient,
                     value:  $scope.thirdHighest
                 },
                 {
-                    label: "Green",
+                    label: $scope.fourthHighestIngredient,
                     value: $scope.fourthHighest
                 },
                 {
-                    label: "Celery",
+                    label: $scope.fifthHighestIngredient,
                     value: $scope.fifthHighest
                 }]
               };
@@ -79,12 +103,6 @@ angular.module('starter.controllers', [])
      response.Ingredients[5].Ingredient.Name = "Apple"; //green apple to long for column.
      $scope.amountOfNutrients = response.Nutrients;
      $scope.amountofShots = response.Shots.length;
-     console.log($scope.amountofShots);
-     console.log($scope.listOfIngredients)
-     console.log($scope.listOfNutrients)
-     console.log(response.Ingredients[5])
-     console.log($scope.greenApple)
-     console.log(response)
    }, function(error){
      console.log(error)
    })
