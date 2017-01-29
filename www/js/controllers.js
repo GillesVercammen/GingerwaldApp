@@ -4,7 +4,38 @@ angular.module('starter.controllers', [])
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 .controller("GraphCtrl", function($scope, $localStorage, dashFactory) {
+    
+        $localStorage.newArrayIngredients = [];
 
+    dashFactory.getDashboard($localStorage.token)
+        .then(function(response){           
+            $localStorage.arrayIngredients = response.Ingredients;    
+        },function(error){
+            console.log(error);
+        })
+        console.log($localStorage.arrayIngredients); 
+        console.log($localStorage.token); 
+
+        for(i = 0; i < $localStorage.arrayIngredients.length; i++) {
+                $localStorage.arrayIngredients[i] =  $localStorage.arrayIngredients[i].Ingredient.Amount_g;
+            }
+        console.log($localStorage.arrayIngredients);
+         for (i = 0; i < $localStorage.arrayIngredients.length - 1; i++) {
+                for (j = i + 1; j < $localStorage.arrayIngredients.length; j++) {
+                     if ($localStorage.arrayIngredients[i] < $localStorage.arrayIngredients[j]) 
+                     {
+                            $scope.temp = $localStorage.arrayIngredients[j];
+                            $localStorage.arrayIngredients[j] = $localStorage.arrayIngredients[i];
+                            $localStorage.arrayIngredients[i] = $scope.temp;
+                    }
+                } 
+            }  
+       console.log($localStorage.arrayIngredients);
+       $scope.highest = $localStorage.arrayIngredients[0];
+       $scope.secondHighest = $localStorage.arrayIngredients[1];
+       $scope.thirdHighest = $localStorage.arrayIngredients[2];
+       $scope.fourthHighest = $localStorage.arrayIngredients[3];
+       $scope.fifthHighest = $localStorage.arrayIngredients[4];
 
      $scope.myDataSource = {
                 chart: {
@@ -13,23 +44,23 @@ angular.module('starter.controllers', [])
                 },
                 data:[{
                     label: "Pineapple",
-                    value: "206"
+                    value: $scope.highest
                 },
                 {
                     label: "Melon",
-                    value: "112"
+                    value: $scope.secondHighest
                 },
                 {
                     label: "Carrot",
-                    value: "91"
+                    value:  $scope.thirdHighest
                 },
                 {
                     label: "Green",
-                    value: "54"
+                    value: $scope.fourthHighest
                 },
                 {
                     label: "Celery",
-                    value: "36"
+                    value: $scope.fifthHighest
                 }]
               };
     
@@ -45,7 +76,7 @@ angular.module('starter.controllers', [])
      $scope.listOfIngredients = response.Ingredients;
      $scope.amountOfIngredients = response.Ingredients;
      $scope.listOfNutrients = response.Nutrients;
-     response.Ingredients[5].Ingredient.Name = "Apple";
+     response.Ingredients[5].Ingredient.Name = "Apple"; //green apple to long for column.
      $scope.amountOfNutrients = response.Nutrients;
      $scope.amountofShots = response.Shots.length;
      console.log($scope.amountofShots);
