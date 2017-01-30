@@ -10,7 +10,7 @@ LOGIN PAGE
     background-image: url("../img/background_chalkboard_smartphone.jpg")
 }
 #scan-btn {
-    width: 40%;
+    width: 50%;
     margin: 0 auto;
 }
 #form-btn {
@@ -33,7 +33,7 @@ BROWSE
 #browse-page {
     background: url("../img/wood.png") center no-repeat
 }
-#browse-page h1 {
+#browse-page h3 {
     color: white;
     text-align: center;
     padding-top: 20px;
@@ -77,6 +77,13 @@ SCANNER
     text-align: center;
 }
 
+#scanner-page h2, #scanner-page h4 {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+#scanner-page {
+    background-image: url("../img/background_chalkboard_smartphone.jpg")
+}
 
 /*
 DASHBOARD

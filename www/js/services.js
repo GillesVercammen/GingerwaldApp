@@ -3,8 +3,8 @@ angular.module('starter.services', [])
 
 .factory('scannerFactory', function($http,$q, $localStorage) {
     return {
-		postJuice: function (token, juice) {
-			var deferred = $q.defer ();
+		addToDash: function (token, juice) {
+			var deferred = $q.defer();
 			var url = 'https://www.gingerwald.com/community/v2.1/api/addBottleToDashboard.php?token=' + token + '&bottle_token=' + juice;	
       		$http.post(url)
       		.success (function (response) {
@@ -16,9 +16,9 @@ angular.module('starter.services', [])
 			return deferred.promise;
 		},
 
-		getJuice: function (token, juice) {
-			var deferred = $q.defer ();
-			var url = 'https://www.gingerwald.com/community/v2.1/api/getBottleDetails.php?token=' + token + '&bottle_token=' + juice;
+		getBottleDetails: function (token, qrToken) {
+			var deferred = $q.defer();
+			var url = 'https://www.gingerwald.com/community/v2.1/api/getBottleDetails.php?token=' + token + '&bottle_token=' + qrToken;
       		$http.post(url)
       		.success (function (response) {
         		deferred.resolve (response);
@@ -29,7 +29,38 @@ angular.module('starter.services', [])
 
 			return deferred.promise;
 		},
-	}
+
+        getJuiceDetails: function (token, juiceId) {
+			var deferred = $q.defer();
+			var url = 'https://www.gingerwald.com/community/v2.1/api/getJuiceDetails.php?token=' + token + '&juice_id=' + juiceId;
+      		$http.post(url)
+      		.success (function (response) {
+        		deferred.resolve (response);
+		    })
+		    .error (function (response) {
+		    	deferred.reject (response);
+		    });
+
+			return deferred.promise;
+	    },
+        /* This is giving me an error:
+            XMLHttpRequest cannot load https://www.gingerwald.com/community/v2.1/api/getJuicePicture.php?token=4sXmUqA2H0ZPROnmk6PJ3laKboOImTCtVQZSpIny7IIGWsOp7EjXjLcbRDr1H2BB&juice_id=33. 
+            No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8100' is therefore not allowed access.
+        */
+        getJuicePicture: function (token, juiceId) {
+			var deferred = $q.defer();
+			var url = 'https://www.gingerwald.com/community/v2.1/api/getJuicePicture.php?token=' + token + '&juice_id=' + juiceId;
+      		$http.post(url)
+      		.success (function (response) {
+        		deferred.resolve (response);
+		    })
+		    .error (function (response) {
+		    	deferred.reject (response);
+		    });
+
+			return deferred.promise;
+	    }
+    }
 })
 .factory('dashFactory', function($http, $q, $localStorage){
     return {

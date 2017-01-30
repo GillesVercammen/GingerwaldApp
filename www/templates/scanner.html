@@ -7,11 +7,14 @@
     </div>
 
     <div class="card">
-      <div class="item item-divider">
-        Scan result:
-      </div>
+        {{juicePicture}}
+        <h2>Scan result:</h2> <br>
+        <h4>Shot name: {{juiceName}}</h4><br>
+        {{JuiceDescription}}<br><br>
+        Amount: {{JuiceAmount}}ml
+        token: {{tokenqr}}
       <div class="item item-text-wrap">
-      <button class="button button-block button-dark"  id="scan-btn" ng-click="addBottle()">Add to dash</button></a>
+      <button class="button button-block button-dark"  id="scan-btn" ng-click="addToDash()">Add to dash</button></a>
       </div>
     </div>
   </ion-content>
