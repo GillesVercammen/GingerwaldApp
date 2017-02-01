@@ -103,6 +103,25 @@ angular.module('starter.services', [])
 .factory('loginFactory',  function($http, $q, $localStorage){        
     return {
         login: function(email, password) {
+
+        /* Niet werkende code , zowel met aparte variabelen, als met de data direct mee te geven en andere mogelijkheden...
+
+        1. $http.post(url,data,config) waarbij
+            var data = {
+                grant_type: 'password',
+                username: email,
+                password: password,
+                client_id: 'GingerwaldUserApp15',
+                client_secret: 'WlKGlWfcqVlE5i4OdgxxOQv1ePMgroFe7PQn9JTvq6DW6Dfpy3fKDeaMwAQXVmag'
+                };
+            
+         2.  $http({
+                method: 'POST',
+                url: url,
+                data: data, 
+                header: 'Content-Type': 'application/x-www-form-urlencoded'
+                })
+        */
             var deferred = $q.defer();
             var config = {
                 headers: {
